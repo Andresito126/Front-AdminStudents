@@ -6,7 +6,7 @@ import { Student } from '../student';
 
 export abstract class StudentGateway {
     abstract getByID(id: String): Observable<Student>;
-    abstract getAll(): Observable<Array<Student>>;
+    abstract getAll(): Observable<Student[]>;
     abstract save (_stu :Student) : Observable<Student /*void*/ >;
     abstract delete(id: number) : Observable<Student /*void*/ >;
     abstract update(id: number, _stu: Student ): Observable<Student /*void*/ >

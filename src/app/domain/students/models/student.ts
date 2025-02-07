@@ -1,9 +1,10 @@
 export class Student {
-
-    ID!:		   	number; 
-    Name!:      	string; 
-    Email!:     	string; 
-    Career!:    	string; 
-    Matricula!: 	string; 
-
-}
+    constructor(
+      public ID: number,
+      public Name: string,
+      public Email: string,
+      public Career: string,
+      public Matricula: string
+    ) {}
+  }
+  
