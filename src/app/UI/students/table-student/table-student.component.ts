@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { GetStudentUseCase } from '../../../domain/students/usecases/getAllStudent_useCase';
+import { Component, Input, OnInit } from '@angular/core';
 import { Student } from '../../../domain/students/models/student';
 
 @Component({
@@ -7,25 +6,9 @@ import { Student } from '../../../domain/students/models/student';
   templateUrl: './table-student.component.html',
   styleUrl: './table-student.component.css'
 })
-export class TableStudentComponent implements OnInit {
+export class TableStudentComponent {
 
-  students: Student[] = [];
+  @Input() students: Student[] = [];
+
   
-
-  constructor(private _getAllStudents : GetStudentUseCase){
-
-  }
-
-  ngOnInit(): void {
-    this._getAllStudents.getAllStudent().subscribe(
-      (students) => {
-        console.log('Students:', students);  
-        this.students = students;
-      },
-      (error) => {
-        console.error('Error', error);
-      }
-    );
-  }
-
 }

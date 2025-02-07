@@ -1,5 +1,7 @@
 <p>students-page works!</p>
 
 <main class="">
-    <app-table-student></app-table-student>
+  <app-table-student [students]="students"></app-table-student>
 </main>
+
+<app-form-student (saveStudentEvent)="handleSaveStudent($event)"></app-form-student>

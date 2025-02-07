@@ -30,7 +30,6 @@ export class StudentApiService extends StudentGateway {
   }
 
  
-
   save(_stu: Student): Observable<Student> {
     return this._http.post<Student>(this._url, _stu);
   }

@@ -8,6 +8,7 @@ import { TableStudentComponent } from './table-student/table-student.component';
 import { StudentGateway } from '../../domain/students/models/gateway/student_gateway';
 import { StudentApiService } from '../../infrastructure/students/driven-adapters/student-api.service';
 import { HttpClientModule } from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
 
 
@@ -21,8 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     StudentsRoutingModule,
     RouterModule,
-    HttpClientModule
-
+    HttpClientModule,
+    FormsModule
+    
   ],
   providers:[{provide:StudentGateway, useClass:StudentApiService}]
 })
