@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GetStudentUseCase } from '../../../domain/students/usecases/getAllStudent_useCase';
 import { SaveStudentUseCase } from '../../../domain/students/usecases/saveStudent_useCase';
 import { Student } from '../../../domain/students/models/student';
+import { DeleteStudentUseCase } from '../../../domain/students/usecases/deleteStudent_useCase';
+import { UpdateStudentUseCase } from '../../../domain/students/usecases/updateStudent_useCase';
 
 
 @Component({
@@ -11,10 +13,16 @@ import { Student } from '../../../domain/students/models/student';
 })
 export class StudentsPageComponent implements OnInit {
   students: Student[] = [];
+  studentToEdit: Student | null = null; 
+
 
   constructor(
     private _getAllStudents: GetStudentUseCase,
-    private _saveStudent: SaveStudentUseCase
+    private _saveStudent: SaveStudentUseCase,
+    private _deleteStudent: DeleteStudentUseCase,
+    private _updateStudent: UpdateStudentUseCase
+
+    
   ) {}
 
   ngOnInit(): void {
@@ -44,4 +52,21 @@ export class StudentsPageComponent implements OnInit {
       }
     );
   }
+
+  deleteStudent(studentID: number): void {
+    this._deleteStudent.deleteStudent(studentID).subscribe(
+      () => {
+     
+        this.students = this.students.filter(student => student.ID !== studentID);
+      },
+      (error) => {
+        console.error('Error al eliminar estudiante:', error);
+      }
+    );
+  }
+
+  setStudentToEdit(student: Student): void {
+    this.studentToEdit = { ...student }; 
+  }
+
 }

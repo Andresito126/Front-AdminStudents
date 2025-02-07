@@ -37,9 +37,10 @@ export class StudentApiService extends StudentGateway {
   update(id: number, _stu: Student): Observable<Student> {
     return this._http.put<Student>(`${this._url}/${id}`, _stu);
   }
+  
 
-  delete(id: number): Observable<Student> {
-    return this._http.delete<Student>(`${this._url}/${id}`);
+  delete(studentID: number): Observable<Student> {
+    return this._http.delete<Student>(`${this._url}${studentID}`);
   }
 
 }
