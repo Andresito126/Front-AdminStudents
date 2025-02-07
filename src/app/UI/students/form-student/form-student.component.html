@@ -1,0 +1,16 @@
+<h2>Registrar Estudiante</h2>
+<form (submit)="saveStudent(); $event.preventDefault()">
+  <label for="name">Nombre:</label>
+  <input type="text" id="name" [(ngModel)]="student.Name" name="name" required />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" [(ngModel)]="student.Email" name="email" required />
+
+  <label for="career">Carrera:</label>
+  <input type="text" id="career" [(ngModel)]="student.Career" name="career" required />
+
+  <label for="matricula">Matrícula:</label>
+  <input type="text" id="matricula" [(ngModel)]="student.Matricula" name="matricula" required />
+
+  <button type="submit">Guardar</button>
+</form>
