@@ -15,6 +15,10 @@ export class StudentsPageComponent implements OnInit, OnDestroy {
   studentToEdit: Student | null = null;
   pollingInterval: any; 
 
+  //short 2
+  pollingInterval2: any; 
+  totalStudents: number = 0;  
+
   constructor(
     private _getAllStudents: GetStudentUseCase,
     private _saveStudent: SaveStudentUseCase,
@@ -25,11 +29,13 @@ export class StudentsPageComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadStudents();
     this.startPolling();
+    this.startPolling2(); 
   }
 
   // para que pare  el polling cuando el componente se destruye
   ngOnDestroy(): void {
     this.stopPolling(); 
+    this.stopPolling2();
   }
 
   //para el getAll
@@ -38,6 +44,7 @@ export class StudentsPageComponent implements OnInit, OnDestroy {
       (students) => {
         console.log('Students:', students);
         this.students = students;
+        this.totalStudents = students.length;
       },
       (error) => {
         console.error('Error', error);
@@ -58,11 +65,28 @@ export class StudentsPageComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  //short 2
+  startPolling2() {
+    this.pollingInterval2 = setInterval(() => {
+      this.totalStudents = this.students.length;  
+    }, 5000);  
+  }
+
+  stopPolling2() {
+    if (this.pollingInterval2) {
+      clearInterval(this.pollingInterval2);
+    }
+  }
+
   handleSaveStudent(student: Student) {
     this._saveStudent.saveStudent(student).subscribe(
       (savedStudent) => {
         console.log('Estudiante guardado:', savedStudent);
         this.students.push(savedStudent); 
+
+        //actualizador contador
+        this.totalStudents = this.students.length; 
       },
       (error) => {
         console.error('Error al guardar estudiante', error);
@@ -74,6 +98,7 @@ export class StudentsPageComponent implements OnInit, OnDestroy {
     this._deleteStudent.deleteStudent(studentID).subscribe(
       () => {
         this.students = this.students.filter(student => student.ID !== studentID);
+        this.totalStudents = this.students.length;
       },
       (error) => {
         console.error('Error al eliminar estudiante:', error);
