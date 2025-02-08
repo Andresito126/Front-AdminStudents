@@ -5,6 +5,8 @@
       </h1>
   
       <main class="table-section">
+        <h2 class="text-lg font-semibold text-gray-300 mb-4">Total Estudiantes: {{ totalStudents }}</h2>
+
         <app-table-student [students]="students" (deleteStudent)="deleteStudent($event)">
         </app-table-student>
       </main>
