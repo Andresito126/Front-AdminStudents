@@ -12,4 +12,5 @@ export abstract class CourseGateway {
   abstract findAll(): Observable<Course[]>;
   abstract update(id: number, course: Course): Observable<Course>;
   abstract delete(id: number): Observable<void>;
+  abstract getByID(id: string): Observable<Course>; 
 }

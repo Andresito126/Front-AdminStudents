@@ -1,8 +1,6 @@
-export class Course {
-  constructor(
-    public id: number,
-    public name: string,
-    public duration: string,
-    public availableSlots: number
-  ) {}
+export interface Course {
+  id?: number;
+  name: string;
+  duration: number; 
+  available_slots: number; 
 }

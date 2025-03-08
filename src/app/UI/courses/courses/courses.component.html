@@ -1,1 +1,39 @@
-<p>courses works!</p>
+<div class="bg-gray-900 min-h-screen text-white p-8">
+    <h1 class="text-3xl font-bold text-center mb-8">Lista de Cursos</h1>
+    <button
+      (click)="navigateToCreate()"
+      class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md mb-4"
+    >
+      Crear Nuevo Curso
+    </button>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let course of courses"
+        class="bg-gray-800 rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow duration-300"
+      >
+        <h2 class="text-xl font-semibold mb-2">{{ course.name }}</h2>
+        <p class="text-gray-400 mb-2">Duración: {{ course.duration }}</p>
+        <p class="text-gray-400 mb-4">Cupos: {{ course.available_slots }}</p>
+        <div class="flex space-x-2">
+          <button
+            (click)="course.id !== undefined && navigateToDetails(course.id)"
+            class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md"
+          >
+            Detalles
+          </button>
+          <button
+            (click)="course.id !== undefined && navigateToEdit(course.id)"
+            class="px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md"
+          >
+            Editar
+          </button>
+          <button
+            (click)="course.id !== undefined && deleteCourse(course.id)"
+            class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
