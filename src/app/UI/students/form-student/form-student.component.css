@@ -1,0 +1,82 @@
+/* Estilos generales */
+body {
+    background: linear-gradient(to right, #141e30, #243b55);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  /* Contenedor del formulario */
+  .form-container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+  }
+  
+  /* Título */
+  .form-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* Grupo de input */
+  .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #d1d1d1;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .input-group input:focus {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+  }
+  
+  /* Botón */
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    background: #00a2ff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background: #007acc;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 162, 255, 0.5);
+  }
+  
