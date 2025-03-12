@@ -1,0 +1,31 @@
+<div class="bg-gray-900 min-h-screen text-white p-8">
+  <h1 class="text-3xl font-bold text-center mb-8">Inscripciones</h1>
+
+  <button
+    (click)="openForm()"
+    class="flex mx-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md mb-4"
+  >
+    Realizar una inscripción
+  </button>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse border border-gray-700">
+      <thead>
+        <tr class="bg-gray-800">
+          <th class="p-3 border border-gray-700">ID Inscripción</th>
+          <th class="p-3 border border-gray-700">ID Estudiante</th>
+          <th class="p-3 border border-gray-700">ID Curso</th>
+          <th class="p-3 border border-gray-700">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inscription of inscriptions" class="bg-gray-700">
+          <td class="p-3 border border-gray-600">{{ inscription.id }}</td>
+          <td class="p-3 border border-gray-600">{{ inscription.student_id }}</td>
+          <td class="p-3 border border-gray-600">{{ inscription.course_id }}</td>
+          <td class="p-3 border border-gray-600">{{ inscription.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

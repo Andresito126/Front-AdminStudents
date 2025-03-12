@@ -1,7 +1,7 @@
 // para definir una interfaz "padre" para las clases que heredan de ella o sea el contrato.
 // una interfaz no puede tener metodos implementados y una clase abstracta si 
 
-// course.gateway.ts
+
 import { Observable } from 'rxjs';
 import { Course } from '../course';
 

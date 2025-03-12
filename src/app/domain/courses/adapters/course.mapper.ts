@@ -1,4 +1,3 @@
-// src/app/domain/courses/mappers/course.mapper.ts
 import { Course } from '../models/course';
 import { CourseListDTO } from './courseList.dto';
 

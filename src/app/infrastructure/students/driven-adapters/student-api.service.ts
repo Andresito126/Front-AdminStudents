@@ -20,8 +20,20 @@ export class StudentApiService extends StudentGateway {
   }
 
   getByID(id: string): Observable<Student> {
-    return this._http.get<Student>(`${this._url}/${id}`);
+    return this._http.get<{ students: Student[] }>(`${this._url}${id}`).pipe(
+      map(response => {
+        
+        if (response.students && response.students.length > 0) {
+          const student = response.students[0];
+          return new Student(student.ID, student.Name, student.Email, student.Career, student.Matricula);
+        } else {
+          throw new Error('Estudiante no encontrado');
+        }
+      })
+    );
   }
+  
+  
 
   getAll(): Observable<Student[]> {
     return this._http
