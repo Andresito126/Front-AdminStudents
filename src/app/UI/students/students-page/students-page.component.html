@@ -1,23 +1,22 @@
 <div class="bg-gray-900 min-h-screen text-white flex justify-center">
-    <div class="container max-w-4xl mx-auto px-4 py-8 pt-12">
-      <h1 class="title text-center text-gray-300">
-        ADMINISTRADOR DE ESTUDIANTES
-      </h1>
-  
-      <main class="table-section">
-        <h2 class="text-lg font-semibold text-gray-300 mb-4">Total Estudiantes: {{ totalStudents }}</h2>
+  <div class="container max-w-4xl mx-auto px-4 py-8 pt-12">
+    <h1 class="title text-center text-3xl font-bold text-gray-300 mb-8">
+      ADMINISTRADOR DE ESTUDIANTES
+    </h1>
 
-        <app-table-student [students]="students" (deleteStudent)="deleteStudent($event)">
-        </app-table-student>
-      </main>
-  
-      <div class="form-section bg-gray-800 rounded-lg shadow-md p-6">
-        <h2 class="form-title text-2xl font-semibold text-gray-300">
-          Agregar/Editar Estudiante
-        </h2>
-        <app-form-student (saveStudentEvent)="handleSaveStudent($event)">
-        </app-form-student>
-      </div>
+    <main class="table-section">
+      <h2 class="text-lg font-semibold text-gray-300 mb-4">Total Estudiantes: {{ totalStudents }}</h2>
+
+      <app-table-student [students]="students" (deleteStudent)="deleteStudent($event)">
+      </app-table-student>
+    </main>
+
+    <div class="form-section bg-gray-800 rounded-lg shadow-md p-6 mt-8">
+      <h2 class="form-title text-2xl font-semibold text-gray-300 mb-6">
+        Agregar/Editar Estudiante
+      </h2>
+      <app-form-student (saveStudentEvent)="handleSaveStudent($event)">
+      </app-form-student>
     </div>
   </div>
-  
+</div>

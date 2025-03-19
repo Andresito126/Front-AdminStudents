@@ -17,4 +17,4 @@ export class SaveStudentUseCase {
   saveStudent(student: Student): Observable<Student> {
     return this._studentGateway.save(student);
   }
-}
+} 
