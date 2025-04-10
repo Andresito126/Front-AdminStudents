@@ -23,7 +23,7 @@ import { CourseDataModule } from '../../data/course-data/course-data.module';
     FormsModule,
     ReactiveFormsModule,
 
-    CourseDataModule
+    CourseDataModule //solo se importa el modulo 
   ],
   providers:[{provide:CourseGateway, useClass:CourseApiService}]
 })
