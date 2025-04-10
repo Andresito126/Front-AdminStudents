@@ -5,6 +5,7 @@ import { CourseGateway } from '../../../domain/courses/models/gateway/course_gat
 
 import { GetAllCourseUseCase } from '../../../domain/useCases/courses/course-getAll.useCase';
 import { CourseModel } from '../../../domain/models/courses/course.model';
+import { DeleteCourseUseCase } from '../../../domain/useCases/courses/course-delete.useCase';
 
 @Component({
   selector: 'app-courses',
@@ -20,6 +21,7 @@ export class CoursesComponent implements OnInit {
     private _courseGateway: CourseGateway,
     //
     private getAllCourseUC : GetAllCourseUseCase,
+    private deleteCourseUC: DeleteCourseUseCase,
     private _router: Router,
 
   ) {}
@@ -55,8 +57,13 @@ export class CoursesComponent implements OnInit {
   }
 
   deleteCourse(id: number): void {
-    this._courseGateway.delete(id).subscribe(() => {
-      this.loadCourses(); // recargar la lista después de eliminar
-    });
+    this.deleteCourseUC.execute(id).subscribe(
+      () => {
+        this.loadCourses(); 
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

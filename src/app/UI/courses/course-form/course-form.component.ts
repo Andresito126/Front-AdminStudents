@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from '../../../domain/courses/models/course';
 import { CourseGateway } from '../../../domain/courses/models/gateway/course_gateway';
+import { CreateAllCoursesUseCase } from '../../../domain/useCases/courses/course-create.useCase';
+import { CourseModel } from '../../../domain/models/courses/course.model';
+import { GetByIdCourseUseCase } from '../../../domain/useCases/courses/course-getById.useCase';
+import { CreateCourseModel } from '../../../domain/models/courses/createCourse.model';
 
 @Component({
   selector: 'app-course-form',
@@ -16,7 +20,8 @@ export class CourseFormComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _courseGateway: CourseGateway,
+    private _getCourseByIdUC: GetByIdCourseUseCase,
+    private _createCourseUC: CreateAllCoursesUseCase,
     private _router: Router,
     private _route: ActivatedRoute
   ) {
@@ -36,8 +41,8 @@ export class CourseFormComponent implements OnInit {
   }
 
   loadCourse(id: number): void {
-    this._courseGateway.getByID(id.toString()).subscribe((course: Course) => {
-      this.courseForm.patchValue(course);
+    this._getCourseByIdUC.execute(id).subscribe((course: CourseModel) => {
+      this.courseForm.patchValue(course); // Rellenamos el formulario con los datos obtenidos
     });
   }
 
@@ -46,23 +51,29 @@ export class CourseFormComponent implements OnInit {
 
     const formValue = this.courseForm.value;
 
-    // Transforma los datos para que coincidan con lo que espera el servidor
-    const requestBody = {
+    // Creamos el objeto para enviar a la API (sin id en la creación)
+    const courseToSave: CourseModel = {
+      id: this.isEditMode ? this.courseId! : 0, // Si estamos en edición, ponemos el id, si no, ponemos 0 o undefined
       name: formValue.name,
-      duration: +formValue.duration, // Convierte a número si es necesario
-      available_slots: formValue.availableSlots, // Cambia availableSlots a available_slots
+      duration: +formValue.duration,
+      availableSlots: formValue.availableSlots,
     };
 
     if (this.isEditMode && this.courseId) {
-      this._courseGateway.update(this.courseId, requestBody).subscribe(
+      // Si estamos en modo de edición, actualizamos el curso
+      this._createCourseUC.execute(courseToSave).subscribe(
         () => this._router.navigate(['/courses']),
         (error) => console.error('Error al actualizar el curso:', error)
       );
     } else {
-      this._courseGateway.save(requestBody).subscribe(
+      // Si estamos en modo de creación, guardamos el nuevo curso
+      this._createCourseUC.execute(courseToSave).subscribe(
         () => this._router.navigate(['/courses']),
         (error) => console.error('Error al guardar el curso:', error)
       );
     }
   }
+
+  
+  
 }
