@@ -1,8 +1,10 @@
-// src/app/courses/courses/courses.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from '../../../domain/courses/models/course';
 import { CourseGateway } from '../../../domain/courses/models/gateway/course_gateway';
+
+import { GetAllCourseUseCase } from '../../../domain/useCases/courses/course-getAll.useCase';
+import { CourseModel } from '../../../domain/models/courses/course.model';
 
 @Component({
   selector: 'app-courses',
@@ -10,21 +12,34 @@ import { CourseGateway } from '../../../domain/courses/models/gateway/course_gat
   styleUrls: ['./courses.component.css'],
 })
 export class CoursesComponent implements OnInit {
-  courses: Course[] = [];
+  // courses: Course[] = [];
+
+  coursesM: CourseModel [] = [];
 
   constructor(
     private _courseGateway: CourseGateway,
-    private _router: Router
+    //
+    private getAllCourseUC : GetAllCourseUseCase,
+    private _router: Router,
+
   ) {}
 
   ngOnInit(): void {
+
     this.loadCourses();
   }
 
   loadCourses(): void {
-    this._courseGateway.findAll().subscribe((courses) => {
-      this.courses = courses;
-    });
+    this.getAllCourseUC.execute().subscribe(
+      (response)=>{
+        this.coursesM = response;
+
+      },
+      (err)=>{
+        console.log(err);
+      }
+    
+    )
   }
 
   navigateToCreate(): void {

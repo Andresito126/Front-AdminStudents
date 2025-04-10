@@ -8,6 +8,7 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
 import { RouterModule } from '@angular/router';
 import { CourseGateway } from '../../domain/courses/models/gateway/course_gateway';
 import { CourseApiService } from '../../infrastructure/courses/driven-adapters/course-api-service.service';
+import { CourseDataModule } from '../../data/course-data/course-data.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { CourseApiService } from '../../infrastructure/courses/driven-adapters/c
     CoursesRoutingModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
+    CourseDataModule
   ],
   providers:[{provide:CourseGateway, useClass:CourseApiService}]
 })
